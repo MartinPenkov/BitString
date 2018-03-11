@@ -7,9 +7,9 @@
     </div>
     <div class="form-group">
         <label for="input">Input string</label>
-        <textarea class="form-control" id="input" rows="4"></textarea>
+        <textarea class="form-control" id="input" rows="4">Blockchain Dev Camp - Sofia - February 2018</textarea>
     </div>
-    <div class="form-group">
+    @*<div class="form-group">
         <div class="row">
             <div class="col-md-4">
                 <label>Uncompressed bits: 100</label>
@@ -21,15 +21,15 @@
                 <label>Compressed bits: 50</label>
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="form-group">
         <div class="row">
             <div class="col-md-6">
-                <label for="Huffman Tree String">Bit strings</label>
+                <label for="bits">Bit strings</label>
                 <textarea class="form-control" id="bits" rows="9"></textarea>
             </div>
             <div class="col-md-6">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="numbers">256 bit numbers</label>
                 <textarea class="form-control" id="numbers" rows="9"></textarea>
             </div>
         </div>
@@ -44,54 +44,21 @@
             </div>
         </div>
     </div>
+    <hr />
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3">
+                <input class="form-control" id="contractNumberSet" />
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-default" onclick="setSingleNumber($('#contractNumberSet').val())">Set Number</a>
+            </div>
+            <div class="col-md-3">
+                <input class="form-control" id="contractNumberGet" />
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-default" onclick="getSingleNumber()">Get Number</a>
+            </div>
+        </div>
+    </div>
 </form>
-
-<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
-<script>
-    function computeBits() {
-        var data = $("#input").val();
-
-        var result = "";
-        for (var i = 0; i < data.length; i++) {
-            var n = data.charCodeAt(i).toString(2);
-            result = result + "00000000".substr(n.length) + n;
-        }
-
-        $("#bits").val(result);
-    }
-
-    function stringToBites(data) {
-       
-
-        return result;
-    }
-
-    function computeNumbers() {
-        $("#numbers").val("");
-        var bitData = $("#bits").val();
-        var numbers = [];
-
-        var number256 = bigInt(0);
-        var big2 = bigInt(2);
-        for (var i = 0; i < bitData.length; i++) {
-            if (i % 256 == 0 && i > 0) {
-                numbers.push("0x" + number256.toString(16));
-                number256 = bigInt(0);
-            }
-
-            // console.log(number256);
-
-            number256 = number256.multiply(big2)
-            number256 = number256.plus(bitData.charCodeAt(i) - 48);
-        }
-
-        if ((bitData.length + 1) % 256 != 0) {
-            numbers.push("0x" + number256.toString(16));
-        }
-
-        $("#numbers").val(JSON.stringify(numbers));
-    }
-
-
-
-</script>
